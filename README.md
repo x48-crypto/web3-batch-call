@@ -67,9 +67,10 @@ const provider = "https://mainnet.infura.io/v3/<your_infura_api_key>";
 const etherscanApiKey = "<your_etherscan_api_key>"
 
 const options = {
-  provider,
+  provider, // Only required if not providing your own web3 instance
+  web3, // Only required if not providing your own provider
   etherscan: {
-    apiKey: etherscanApiKey,
+    apiKey: etherscanApiKey, // Only required if not providing abi in contract request configuration
     delayTime: 300, // delay time between etherscan ABI reqests. default is 300 ms
   },
 }
