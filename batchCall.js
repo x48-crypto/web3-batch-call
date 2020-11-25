@@ -6,20 +6,21 @@ const fetch = require("cross-fetch");
 
 class BatchCall {
   constructor(config) {
-    const {web3, provider} = config;
+    const { web3, provider } = config;
 
     if (typeof web3 === "undefined" && typeof provider === "undefined") {
-      throw new Error("You need to either provide a web3 instance or a provider string ser!");
+      throw new Error(
+        "You need to either provide a web3 instance or a provider string ser!"
+      );
     }
 
     if (web3) {
       this.web3 = web3;
-    }
-    else {
+    } else {
       this.web3 = new Web3(provider);
     }
 
-    const { etherscan = {}} = config;
+    const { etherscan = {} } = config;
     const { apiKey = null, delayTime = 300 } = etherscan;
 
     this.etherscanApiKey = apiKey;
@@ -240,7 +241,9 @@ class BatchCall {
   async fetchAbi(address) {
     const { etherscanApiKey } = this;
     if (etherscanApiKey === null) {
-      throw new Error("No etherscan API key set ser! You either need to provide an etherscan API key, or provide your own ABI in your contract config.");
+      throw new Error(
+        "No etherscan API key set ser! You either need to provide an etherscan API key, or provide your own ABI in your contract config."
+      );
     }
 
     let abi;
