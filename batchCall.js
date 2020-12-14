@@ -273,18 +273,17 @@ class BatchCall {
         {}
       );
       contractsToReturn = contractsStateByNamespaceReduced;
-    }
-
-    if (this.addBlockInfo) {
-      if (contractsToReturn && Object.keys(contractsToReturn).length > 0) {
-        if (!blockNumber) {
-          blockNumber = await web3.eth.getBlockNumber();
-        }
-        const blockInfo = await web3.eth.getBlock(blockNumber);
-        if (blockInfo) {
-          // see complete list here: https://web3js.readthedocs.io/en/v1.3.0/web3-eth.html#id59
-          const allowedFields = ['number', 'hash', 'gasLimit', 'gasUsed', 'timestamp'];
-          contractsToReturn['blockInfo'] = _.pick(blockInfo, allowedFields);
+      if (this.addBlockInfo) {
+        if (contractsToReturn && Object.keys(contractsToReturn).length > 0) {
+          if (!blockNumber) {
+            blockNumber = await web3.eth.getBlockNumber();
+          }
+          const blockInfo = await web3.eth.getBlock(blockNumber);
+          if (blockInfo) {
+            // see complete list here: https://web3js.readthedocs.io/en/v1.3.0/web3-eth.html#id59
+            const allowedFields = ['number', 'hash', 'gasLimit', 'gasUsed', 'timestamp'];
+            contractsToReturn['blockInfo'] = _.pick(blockInfo, allowedFields);
+          }
         }
       }
     }
